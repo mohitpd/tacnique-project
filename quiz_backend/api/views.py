@@ -61,12 +61,10 @@ class CreateQuizView(APIView):
         
 class ListQuizzesView(APIView):
     def get(self, request):
-        quizzes_collection = get_collection("quizzes")
-
+        quizzes_collection = get_collection('quizzes')
         docs = []
-
-        for q in quizzes_collection.find({}, {"questions.answer": 0}):
-            q['id'] = str(q['_id'])
+        for q in quizzes_collection.find({}, {'questions.answer': 0}):
+            q['_id'] = str(q['_id'])
             for question in q.get('questions', []):
                 question['id'] = str(question['_id'])
                 del question['_id']

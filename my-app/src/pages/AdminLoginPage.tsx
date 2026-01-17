@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { admimLogin } from "../api/authApi";
 import { setAccessToken } from "../utils/token";
+import { adminLogin } from "../api/authApi";
 
 export function AdminLoginPage() {
   const [username, setUsername] = useState("");
@@ -15,7 +15,7 @@ export function AdminLoginPage() {
     try {
       setLoading(true);
       setError(null);
-      const response = await admimLogin(username, password);
+      const response = await adminLogin(username, password);
       setAccessToken(response.token);
       navigate("/admin/dashboard");
     } catch (err) {

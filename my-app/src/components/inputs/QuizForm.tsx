@@ -3,7 +3,7 @@ import type { Question } from "../../types/quiz";
 import { QuestionRenderer } from "./QuestionRenderer";
 
 interface QuizFormProps {
-  questions: Question[];
+  questions: any;
   onSubmit: (data: {
     name: string;
 
@@ -61,14 +61,20 @@ export function QuizForm(props: QuizFormProps) {
         onChange={(e) => setEmail(e.target.value)}
       />
 
-      {questions.map((q) => (
-        <QuestionRenderer
-          key={q.id}
-          question={q}
-          value={answers[q.id] || ""}
-          onAnswer={(val) => setAnswers((prev) => ({ ...prev, [q.id]: val }))}
-        />
-      ))}
+      {questions[0] &&
+        questions[0].questions.map((q, id) => (
+          <QuestionRenderer
+            key={id}
+            question={q}
+            value={answers[q.id] || ""}
+            onAnswer={(val) => setAnswers((prev) => ({ ...prev, [q.id]: val }))}
+          />
+        ))}
+
+      <button onClick={handleSubmit} disabled={submitting}>
+        {submitting ? "Submitting..." : "Submit Quiz"}
+      </button>
+      {error && <div style={{ color: "red" }}>{error}</div>}
     </>
   );
 }

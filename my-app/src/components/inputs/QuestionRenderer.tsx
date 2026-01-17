@@ -25,7 +25,7 @@ export function QuestionRenderer(props: {
         <TrueFalseInput value={value} onChange={onAnswer} />
       )}
 
-      {question.type === "TEST" && (
+      {question.type === "TEXT" && (
         <TextInput value={value} onChange={onAnswer} />
       )}
     </div>
