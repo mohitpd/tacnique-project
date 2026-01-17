@@ -4,7 +4,7 @@ export async function admimLogin(
   username: string,
   password: string,
 ): Promise<{ token: string }> {
-  const res = await fetch(`${CONFIG.API_BASE_URL}/admin/login`, {
+  const res = await fetch(`${CONFIG.API_BASE_URL}/admin/login/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
